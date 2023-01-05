@@ -1,5 +1,5 @@
-import { Catalog } from "./routes/Catalog";
+import { ProductDetails } from "./routes/ProductDetails";
 
 export const App = () => {
-  return <Catalog />;
+  return <ProductDetails />;
 };

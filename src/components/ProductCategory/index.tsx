@@ -1,5 +1,9 @@
 import "./styles.css";
 
-export const ProductCategory = () => {
-  return <div className="dsc-category">Eletrônicos</div>;
+type Props = {
+  name: string;
+};
+
+export const ProductCategory = ({ name }: Props) => {
+  return <div className="dsc-category">{name}</div>;
 };
