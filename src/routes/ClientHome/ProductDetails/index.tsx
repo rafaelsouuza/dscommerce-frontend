@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ButtonInverse } from "../../../components/ButtonInverse";
 import { ButtonPrimary } from "../../../components/ButtonPrimary";
 import { ProductDetailsCard } from "../../../components/ProductDetailsCard";
@@ -10,12 +10,19 @@ import "./styles.css";
 export const ProductDetails = () => {
   const params = useParams();
 
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState<ProductDTO>();
 
   useEffect(() => {
-    productService.findById(Number(params.productId)).then((response) => {
-      setProduct((prev) => (prev = response.data));
-    });
+    productService
+      .findById(Number(params.productId))
+      .then((response) => {
+        setProduct((prev) => (prev = response.data));
+      })
+      .catch(() => {
+        navigate("/");
+      });
   }, []);
 
   return (
