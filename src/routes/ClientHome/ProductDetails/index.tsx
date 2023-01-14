@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ButtonInverse } from "../../../components/ButtonInverse";
@@ -14,14 +13,9 @@ export const ProductDetails = () => {
   const [product, setProduct] = useState<ProductDTO>();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/products/${params.productId}`)
-      .then((response) => {
-        setProduct((prev) => (prev = response.data));
-      });
-
-    // const prod = productService.findById(Number(params.productId));
-    // setProduct((prev) => (prev = prod));
+    productService.findById(Number(params.productId)).then((response) => {
+      setProduct((prev) => (prev = response.data));
+    });
   }, []);
 
   return (
